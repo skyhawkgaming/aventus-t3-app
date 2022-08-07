@@ -31,7 +31,13 @@ function Home(post) {
 }
 
 export async function getStaticProps() {
-    const res = await fetch('http://78.108.218.94:25837/api/members');
+    const https = require('https');
+    const agent = new https.Agent({
+        rejectUnauthorized: false,
+    });
+    const res = await fetch('https://78.108.218.94:25837/api/members', {
+        agent,
+    });
     const post = await res.json();
     return {
         props: {

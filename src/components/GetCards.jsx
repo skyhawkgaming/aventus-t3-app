@@ -12,7 +12,7 @@ function GetCards() {
     const data = [];
     useEffect(() => {
         axios
-            .get('http://78.108.218.94:25837/api/cards')
+            .get('https://78.108.218.94:25837/api/cards')
             .then((res) => {
                 console.log(res);
                 setPosts(res.data);

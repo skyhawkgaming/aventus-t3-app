@@ -39,7 +39,7 @@ function GetGrid() {
     };
     return (
         <div>
-            <div className="p-2 m-2 mt-24 bg-white md:m-10 md:p-10 dark:bg-comp-slate rounded-3xl">
+            <div className="p-2 m-2 mt-24 bg-secondary-dark-bg md:m-10 md:p-10 dark:bg-comp-slate rounded-3xl">
                 <Header category="Database" title="ProdUsers" />
                 <GridComponent
                     dataSource={post}

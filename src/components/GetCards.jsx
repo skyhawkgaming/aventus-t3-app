@@ -52,11 +52,13 @@ function GetCards() {
     return (
         <div>
             <div className="flex flex-wrap justify-center lg:flex-nowrap ">
-                <div className="w-full p-8 m-3 bg-white bg-center bg-cover dark:text-gray-200 dark:bg-secondary-dark-bg h-44 rounded-xl lg:w-80 pt-9">
+                <div className="w-full p-8 m-3 bg-center bg-cover bg-secondary-dark-bg dark:text-gray-200 dark:bg-secondary-dark-bg h-44 rounded-xl lg:w-80 pt-9">
                     <div className="flex items-center justify-between ">
                         <div>
                             <p className="font-bold text-gray-400">Members</p>
-                            <p className="text-2xl">{post[2]}</p>
+                            <p className="text-2xl text-light-gray">
+                                {post[2]}
+                            </p>
                         </div>
                         <button
                             type="button"
@@ -71,7 +73,7 @@ function GetCards() {
                     {dashInfo.map((item) => (
                         <div
                             key={item.title}
-                            className="p-4 bg-white h-44 dark:text-gray-200 dark:bg-secondary-dark-bg md:w-56 pt-9 rounded-2xl "
+                            className="p-4 bg-secondary-dark-bg h-44 dark:text-gray-200 dark:bg-secondary-dark-bg md:w-56 pt-9 rounded-2xl "
                         >
                             <button
                                 type="button"
@@ -84,7 +86,7 @@ function GetCards() {
                                 {item.icon}
                             </button>
                             <p className="mt-3">
-                                <span className="text-lg font-semibold">
+                                <span className="text-lg font-semibold text-light-gray">
                                     {item.amount}
                                 </span>
                             </p>

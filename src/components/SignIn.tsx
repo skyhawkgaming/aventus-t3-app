@@ -4,7 +4,7 @@ export default function SignIn() {
   const { data: session } = useSession()
   if (session) {
     return (
-      <span className='fixed bottom-4 text-zinc-500'>
+      <span className='fixed text-center bottom-4 text-zinc-500'>
         Signed in as {session.user!.name} <br />
         {/* <button className="text-zinc-500" onClick={() => signOut()}>
           Sign out
@@ -13,7 +13,7 @@ export default function SignIn() {
     )
   }
   return (
-    <span className='fixed text-zinc-500 bottom-4'>
+    <span className='fixed text-center text-zinc-500 bottom-4'>
       Not signed in <br />
       <button className="p-1 mx-auto my-auto text-white bg-gray-900 rounded-lg hover:bg-blue-600" onClick={() => signIn()}>Sign in</button>
       {/* <button className="text-zinc-500" onClick={() => signIn()}>

@@ -16,7 +16,7 @@ function Home() {
                     <div>
                         <div className="text-center">
                             <h1 className="flex items-center h-screen my-auto mb-2 text-3xl font-bold text-white">
-                                Howdy
+                                Howdy World
                             </h1>
                         </div>
                     </div>

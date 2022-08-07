@@ -10,16 +10,6 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@syncfusion/ej2": "^19.4.48",
-    "@syncfusion/ej2-react-calendars": "^19.4.48",
-    "@syncfusion/ej2-react-charts": "^19.4.50",
-    "@syncfusion/ej2-react-dropdowns": "^19.4.52",
-    "@syncfusion/ej2-react-grids": "^19.4.50",
-    "@syncfusion/ej2-react-inputs": "^19.4.52",
-    "@syncfusion/ej2-react-kanban": "^19.4.48",
-    "@syncfusion/ej2-react-popups": "^19.4.52",
-    "@syncfusion/ej2-react-richtexteditor": "^19.4.50",
-    "@syncfusion/ej2-react-schedule": "^19.4.50",
     "axios": "^0.27.2",
     "@next-auth/prisma-adapter": "^1.0.4",
     "@prisma/client": "^4.1.1",
@@ -39,6 +29,7 @@
     "react-scripts": "5.0.0"
   },
   "devDependencies": {
+    "@roketid/windmill-react-ui": "^0.1.1",
     "@types/node": "18.0.0",
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",

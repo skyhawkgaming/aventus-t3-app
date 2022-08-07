@@ -1,6 +1,7 @@
 import GetCards from '../../components/GetCards';
-import GetGrid from '../../components/GetGrid';
 import SideBar from '../../components/SideBar';
+import Tables from '../../components/Tables';
+import SignIn from '../../components/SignIn';
 const Home = () => {
     // const { data: session } = useSession()
 
@@ -16,7 +17,8 @@ const Home = () => {
                     <div>
                         <div className="text-center">
                             <GetCards />
-                            <GetGrid />
+                            <Tables />
+                            <SignIn />
                         </div>
                     </div>
                 </div>

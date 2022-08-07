@@ -11,8 +11,11 @@ function GetCards() {
     const [post, setPosts] = useState([]);
     const data = [];
     useEffect(() => {
+        const https = require('https');
+        const agent = new https.Agent({ rejectUnauthorized: false });
+
         axios
-            .get('https://78.108.218.94:25837/api/cards')
+            .get('https://78.108.218.94:25837/api/cards', { agent })
             .then((res) => {
                 console.log(res);
                 setPosts(res.data);

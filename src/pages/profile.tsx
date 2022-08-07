@@ -1,8 +1,8 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
 
-import SideBar from '../../../tusk-webapp/src/components/SideBar';
-import SignIn from '../../../tusk-webapp/src/components/SignIn';
+import SideBar from '../components/SideBar';
+import SignIn from '../components/SignIn';
 
 const Profile: NextPage = props => {
   return (

@@ -45,7 +45,11 @@ export default function SideBar() {
                         />
                     </a>
                     <Divider />
-                    <a id="dashboard-button" ms-hide-element="true" href="home">
+                    <a
+                        id="dashboard-button"
+                        ms-hide-element="true"
+                        href="dashboard"
+                    >
                         <SideBarIcon
                             icon={<BsFillBarChartFill size="28" />}
                             text="Dashboard"

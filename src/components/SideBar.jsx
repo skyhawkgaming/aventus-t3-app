@@ -1,15 +1,14 @@
 import { signIn, signOut, useSession } from 'next-auth/react';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { GiPodiumWinner, GiSwordsPower } from 'react-icons/gi';
 
 import {
     BsFillBarChartFill,
     BsFillGridFill,
-    BsFillHandbagFill,
-    BsFillPersonLinesFill,
-    BsPeopleFill,
     BsPersonDashFill,
     BsPersonPlusFill,
-    BsQuestionCircleFill,
+    BsWrench,
 } from 'react-icons/bs';
 
 export default function SideBar() {
@@ -55,10 +54,16 @@ export default function SideBar() {
                             text="Dashboard"
                         />
                     </a>
-                    <a id="team-button" ms-hide-element="true" href="team">
+                    <a id="fame-button" ms-hide-element="true" href="fame">
                         <SideBarIcon
-                            icon={<BsPeopleFill size="28" />}
-                            text="Team"
+                            icon={<GiPodiumWinner size="28" />}
+                            text="Hall of Fame"
+                        />
+                    </a>
+                    <a id="comps-button" ms-hide-element="true" href="comps">
+                        <SideBarIcon
+                            icon={<GiSwordsPower size="28" />}
+                            text="Competitions"
                         />
                     </a>
                     <a
@@ -67,11 +72,25 @@ export default function SideBar() {
                         href="profile"
                     >
                         <SideBarIcon
-                            icon={<BsFillPersonLinesFill size="28" />}
-                            text="Profile"
+                            icon={
+                                <Image
+                                    className="rounded-full"
+                                    width="36"
+                                    height="36"
+                                    alt="Profile Picture"
+                                    src={session.user?.image || ''}
+                                />
+                            }
+                            text="Edit Profile"
                         />
                     </a>
                     <Divider />
+                    <a id="comps-button" ms-hide-element="true" href="admin">
+                        <SideBarIcon
+                            icon={<BsWrench size="28" />}
+                            text="Admin"
+                        />
+                    </a>
                     <button onClick={() => signOut()}>
                         <SideBarIcon
                             icon={<BsPersonDashFill size="28" />}
@@ -100,6 +119,12 @@ export default function SideBar() {
                     <SideBarIcon
                         icon={<BsFillBarChartFill size="28" />}
                         text="Dashboard"
+                    />
+                </a>
+                <a id="fame-button" ms-hide-element="true" href="fame">
+                    <SideBarIcon
+                        icon={<GiPodiumWinner size="28" />}
+                        text="Hall of Fame"
                     />
                 </a>
                 {/* <a id='store-button' ms-hide-element='true' href='store'>

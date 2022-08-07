@@ -4,11 +4,11 @@ import Head from 'next/head';
 import SideBar from '../components/SideBar';
 import SignIn from '../components/SignIn';
 
-const Profile: NextPage = props => {
+const Fame: NextPage = props => {
   return (
     <>
       <Head>
-        <title>My Profile</title>
+        <title>Fame</title>
         <meta name='help' content='statistics' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
@@ -17,11 +17,11 @@ const Profile: NextPage = props => {
         <div>
           <SideBar />
         </div>
-        <h1 className='text-3xl text-white'>Edit Profile</h1>
+        <h1 className='text-3xl text-white'>Hall of Fame</h1>
         <SignIn />
       </main>
     </>
   )
 }
 
-export default Profile
+export default Fame

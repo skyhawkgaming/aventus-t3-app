@@ -4,8 +4,10 @@ export default function SignIn() {
   const { data: session } = useSession()
   if (session) {
     return (
+
       <span className='fixed text-center bottom-4 text-zinc-500'>
         Signed in as {session.user!.name} <br />
+
         {/* <button className="text-zinc-500" onClick={() => signOut()}>
           Sign out
         </button> */}

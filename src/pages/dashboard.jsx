@@ -127,8 +127,8 @@ function Dashboard({ post, cards }) {
                         <DataTable value={post} responsiveLayout="scroll">
                             {dynamicColumns}
                         </DataTable>
-                        <SignIn />
                     </div>
+                    <SignIn />
                 </div>
             </div>
         </>

@@ -119,9 +119,11 @@ function Dashboard({ post, cards }) {
                 </div>
               </div>
             </div>
-            <DataTable value={post} responsiveLayout="scroll">
-              {dynamicColumns}
-            </DataTable>
+            <div className="bg-main-dark-bg pt-4 pb-4 mr-4 rounded-xl">
+              <DataTable value={post} responsiveLayout="scroll">
+                {dynamicColumns}
+              </DataTable>
+            </div>
           </div>
           <SignIn />
         </div>

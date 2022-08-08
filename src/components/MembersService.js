@@ -5,7 +5,6 @@ export class MembersService {
       rejectUnauthorized: false,
     });
     const res = fetch('https://78.108.218.94:25837/api/members', {
-      mode: 'no-cors',
       agent,
     });
     const post = res;

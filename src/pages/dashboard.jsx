@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import {
     BsCalendarEventFill,
@@ -11,7 +11,7 @@ import SideBar from '../components/SideBar';
 import SignIn from '../components/SignIn';
 
 /** @param {import('next').InferGetStaticPropsType<typeof getStaticProps> } props */
-function Dashboard({ post, cards }) {
+function Dashboard({ members, cards }) {
     const dashInfo = [
         {
             icon: <BsPersonCheckFill />,
@@ -113,7 +113,24 @@ function Dashboard({ post, cards }) {
                                 </div>
                                 <SignIn />
                                 <div className="text-white">
-                                    {JSON.stringify(post)}
+                                    <tbody>
+                                        <tr>
+                                            <th>discordId</th>
+                                            <th>discordName</th>
+                                            <th>osrsName</th>
+                                            <th>points</th>
+                                            <th>splits</th>
+                                        </tr>
+                                    </tbody>
+                                    {members.map((item, i) => (
+                                        <tr key={i}>
+                                            <td>{item.discordId}</td>
+                                            <td>{item.discordName}</td>
+                                            <td>{item.osrsName}</td>
+                                            <td>{item.points}</td>
+                                            <td>{item.splits}</td>
+                                        </tr>
+                                    ))}
                                 </div>
                             </div>
                         </div>
@@ -132,14 +149,14 @@ export async function getStaticProps() {
     const res = await fetch('https://78.108.218.94:25837/api/members', {
         agent,
     });
-    const post = await res.json();
+    const members = await res.json();
     const res2 = await fetch('https://78.108.218.94:25837/api/cards', {
         agent,
     });
     const cards = await res2.json();
     return {
         props: {
-            post,
+            members: members,
             cards,
         },
     };

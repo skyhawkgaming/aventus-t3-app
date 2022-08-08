@@ -11,13 +11,10 @@ import { classNames } from 'primereact/utils';
 
 import { BsArrowDownLeftCircle } from 'react-icons/bs';
 
-import { Column } from 'primereact/column';
-import { DataTable } from 'primereact/datatable';
-
 import {
   BsCalendarEventFill,
   BsFillPersonFill,
-  BsPersonCheckFill,
+  BsPersonCheckFill
 } from 'react-icons/bs';
 import { FaCoins } from 'react-icons/fa';
 import SideBar from '../components/SideBar';

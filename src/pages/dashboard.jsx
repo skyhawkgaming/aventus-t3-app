@@ -11,6 +11,9 @@ import { classNames } from 'primereact/utils';
 
 import { BsArrowDownLeftCircle } from 'react-icons/bs';
 
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+
 import {
   BsCalendarEventFill,
   BsFillPersonFill,
@@ -150,11 +153,13 @@ function Dashboard({ members, cards }) {
 
             <div className="pl-20 bg-main-bg">
               <div>
+
                 <div className="items-center flex flex-wrap">
                   {/* <div className="w-224 p-8 my-3 text-gray-200 bg-secondary-dark-bg rounded-xl">
                     <div className="flex items-center justify-between ">
                       <div>
                         <p className="pl-4 font-bold">Members</p>
+
                         <p className="text-2xl text-light-gray">{cards[2]}</p>
                       </div>
                       <button
@@ -162,6 +167,7 @@ function Dashboard({ members, cards }) {
                         style={{
                           backgroundColor: 'bg-slate-600',
                         }}
+
                         className="first-letter:text-2xl opacity-0.9 text-white hover:drop-shadow-xl rounded-full  px-4"
                       >
                         <BsFillPersonFill size="32" />
@@ -173,6 +179,7 @@ function Dashboard({ members, cards }) {
                       <div
                         key={item.title}
                         className="p-4 text-gray-200 bg-secondary-dark-bg h-44 md:w-56 pt-9 rounded-2xl mx-1 "
+
                       >
                         <button
                           type="button"
@@ -239,6 +246,7 @@ function Dashboard({ members, cards }) {
                   </DataTable>
                 </div>
               </div>
+
             </div>
             <SignIn />
           </div>
@@ -249,6 +257,7 @@ function Dashboard({ members, cards }) {
 }
 
 export async function getServerSideProps() {
+
   const https = require('https');
   const agent = new https.Agent({
     rejectUnauthorized: false,
@@ -256,14 +265,18 @@ export async function getServerSideProps() {
   const res = await fetch('https://78.108.218.94:25837/api/members', {
     agent,
   });
+
   const members = await res.json();
+
   const res2 = await fetch('https://78.108.218.94:25837/api/cards', {
     agent,
   });
   const cards = await res2.json();
   return {
     props: {
+
       members,
+
       cards,
     },
   };

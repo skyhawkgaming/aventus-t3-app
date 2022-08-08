@@ -2,15 +2,18 @@
 import SignIn from './SignIn';
 
 type TechnologyCardProps = {
-  name: string
-  description: string
-  documentation: string
-}
+
+  name: string;
+  description: string;
+  documentation: string;
+};
+
 
 const ContentContainer = () => {
   return (
     <>
       <SignIn />
+
       <h1 className='text-5xl md:text-[5rem] leading-normal font-extrabold text-gray-200'>
         Aventus <span className='text-blue-500'>T3</span> App
       </h1>
@@ -42,6 +45,7 @@ const ContentContainer = () => {
   )
 }
 
+
 const TechnologyCard = ({
   name,
   description,
@@ -56,11 +60,14 @@ const TechnologyCard = ({
         href={documentation}
         target='_blank'
         rel='noreferrer'
+
       >
         Documentation
       </a>
     </section>
-  )
-}
 
-export default ContentContainer
+  );
+};
+
+export default ContentContainer;
+

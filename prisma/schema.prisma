@@ -20,7 +20,7 @@ model Example {
 
 model Members {
     uid       String  @id @default(cuid())
-    user      String
+    user      String?
     osrsName  String
     discordId String? @unique
     points    Int?    @default(0)

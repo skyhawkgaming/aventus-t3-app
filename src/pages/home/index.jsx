@@ -5,6 +5,7 @@ import SignIn from '../../components/SignIn';
 
 /** @param {import('next').InferGetStaticPropsType<typeof getStaticProps> } props */
 function Home() {
+
     return (
         <main className="flex flex-col items-center justify-center h-screen p-4 pl-20 mx-auto my-auto bg-main-bg">
             <div>
@@ -33,6 +34,7 @@ function Home() {
         //     </div>
         // </div>
     );
+
 }
 
 export default Home;

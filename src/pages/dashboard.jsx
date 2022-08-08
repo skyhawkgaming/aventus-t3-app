@@ -128,8 +128,8 @@ function Dashboard({ post, cards }) {
                             {dynamicColumns}
                         </DataTable>
                     </div>
+                    <SignIn />
                 </div>
-                <SignIn />
             </div>
         </>
     );

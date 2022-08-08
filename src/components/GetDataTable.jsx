@@ -10,124 +10,127 @@ import { BsArrowDownLeftCircle } from 'react-icons/bs';
 import { MembersService } from './MembersService';
 
 function GetTableData() {
-    const [members1, setMembers1] = useState([]);
-    const [members2, setMembers2] = useState([]);
-    const [members3, setMembers3] = useState([]);
-    const [first1, setFirst1] = useState(0);
-    const [rows1, setRows1] = useState(10);
-    const [first2, setFirst2] = useState(0);
-    const [rows2, setRows2] = useState(10);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [pageInputTooltip, setPageInputTooltip] = useState(
-        "Press 'Enter' key to go to this page."
-    );
+  const [members, setMembers] = useState([]);
+  const [first, setFirst] = useState(0);
+  const [rows, setRows] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageInputTooltip, setPageInputTooltip] = useState(
+    "Press 'Enter' key to go to this page."
+  );
 
-    const onCustomPage1 = (event) => {
-        setFirst1(event.first);
-        setRows1(event.rows);
-        setCurrentPage(event.page + 1);
-    };
+  const onCustomPage = (event) => {
+    setFirst(event.first);
+    setRows(event.rows);
+  };
 
-    const onCustomPage2 = (event) => {
-        setFirst2(event.first);
-        setRows2(event.rows);
-    };
+  const onPageInputChange = (event) => {
+    setCurrentPage(event.target.value);
+  };
 
-    const onPageInputKeyDown = (event, options) => {
-        if (event.key === 'Enter') {
-            const page = parseInt(currentPage);
-            if (page < 1 || page > options.totalPages) {
-                setPageInputTooltip(
-                    `Value must be between 1 and ${options.totalPages}.`
-                );
-            } else {
-                const first = currentPage ? options.rows * (page - 1) : 0;
+  useEffect(() => {
+    const membersService = new MembersService();
+    membersService
+      .getPost()
+      .then((res) => res.json())
+      .then((data) => setMembers(data));
+  }, []);
 
-                setFirst1(first);
-                setPageInputTooltip("Press 'Enter' key to go to this page.");
-            }
-        }
-    };
+  const template1 = {
+    layout:
+      'PrevPageLink PageLinks NextPageLink RowsPerPageDropdown CurrentPageReport',
+    PrevPageLink: (options) => {
+      return (
+        <button
+          type='button'
+          className={options.className}
+          onClick={options.onClick}
+          disabled={options.disabled}
+        >
+          <span className='p-3 underline'>Previous</span>
+          <Ripple />
+        </button>
+      );
+    },
+    NextPageLink: (options) => {
+      return (
+        <button
+          type='button'
+          className={options.className}
+          onClick={options.onClick}
+          disabled={options.disabled}
+        >
+          <span className='p-3 underline'>Next</span>
+          <Ripple />
+        </button>
+      );
+    },
+    PageLinks: (options) => {
+      if (
+        (options.view.startPage === options.page &&
+          options.view.startPage !== 0) ||
+        (options.view.endPage === options.page &&
+          options.page + 1 !== options.totalPages)
+      ) {
+        const className = classNames(options.className, { 'p-disabled': true });
 
-    const onPageInputChange = (event) => {
-        setCurrentPage(event.target.value);
-    };
+        return (
+          <span className={className} style={{ userSelect: 'none' }}>
+            ...
+          </span>
+        );
+      }
 
-    useEffect(() => {
-        const membersService = new MembersService();
-        membersService
-            .getPost()
-            .then((res) => res.json())
-            .then((data) => setMembers1(data));
-        membersService
-            .getPost()
-            .then((res) => res.json())
-            .then((data) => setMembers2(data));
-        membersService
-            .getPost()
-            .then((res) => res.json())
-            .then((data) => setMembers3(data));
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+      return (
+        <button
+          type='button'
+          className={options.className}
+          onClick={options.onClick}
+        >
+          {options.page + 1}
+          <Ripple />
+        </button>
+      );
+    },
+  };
 
-    const template2 = {
-        layout: 'CurrentPageReport PrevPageLink NextPageLink',
-        CurrentPageReport: (options) => {
-            return (
-                <span
-                    style={{
-                        color: 'rebeccapurple',
-                        userSelect: 'none',
-                        width: '120px',
-                        textAlign: 'center',
-                    }}
-                >
-                    {options.first} - {options.last} of {options.totalRecords}
-                </span>
-            );
-        },
-    };
-
-    return (
-        <div className="bg-secondary-dark-bg text-light-gray">
-            <DataTable
-                value={members3}
-                paginator
-                paginatorTemplate={template2}
-                first={first2}
-                rows={rows2}
-                onPage={onCustomPage2}
-                paginatorClassName="justify-content-end"
-                className="mt-6"
-                responsiveLayout="scroll"
-            >
-                <Column
-                    field="discordName"
-                    header="Discord Name"
-                    style={{ width: '20%' }}
-                ></Column>
-                <Column
-                    field="discordId"
-                    header="Discord Id"
-                    style={{ width: '20%' }}
-                ></Column>
-                <Column
-                    field="osrsName"
-                    header="Osrs Name"
-                    style={{ width: '20%' }}
-                ></Column>
-                <Column
-                    field="splits"
-                    header="Splits"
-                    style={{ width: '20%' }}
-                ></Column>
-                <Column
-                    field="points"
-                    header="Points"
-                    style={{ width: '20%' }}
-                ></Column>
-            </DataTable>
-        </div>
-    );
+  return (
+    <div className='bg-secondary-dark-bg text-light-gray   '>
+      <DataTable
+        value={members}
+        paginator
+        paginatorTemplate={template1}
+        paginatorPosition='top'
+        first={first}
+        rows={rows}
+        onPage={onCustomPage}
+        paginatorClassName=''
+        className=''
+        responsiveLayout='scroll'
+      >
+        <Column
+          field='discordName'
+          header='Discord Name'
+          style={{ width: 250 }}
+        ></Column>
+        <Column
+          field='discordId'
+          header='Discord Id'
+          style={{ width: 150 }}
+        ></Column>
+        <Column
+          field='osrsName'
+          header='Osrs Name'
+          style={{ width: 150 }}
+        ></Column>
+        <Column field='splits' header='Splits' style={{ width: 150 }}></Column>
+        <Column
+          field='points'
+          header='Points'
+          style={{ width: 150, height: 40 }}
+        ></Column>
+      </DataTable>
+    </div>
+  );
 }
 
 export default GetTableData;

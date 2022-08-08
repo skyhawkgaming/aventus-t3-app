@@ -75,7 +75,7 @@ function Dashboard({ post, cards }) {
                     <div className="pl-20 bg-main-bg">
                         <div>
                             <div className="flex flex-wrap">
-                                <div className="w-full h-full p-8 m-3 text-gray-200 bg-secondary-dark-bg rounded-xl lg:w-40">
+                                <div className="w-40 h-full p-8 m-3 text-gray-200 bg-secondary-dark-bg rounded-xl lg:w-40">
                                     <div className="flex items-center justify-between ">
                                         <div>
                                             <p className="font-bold">Members</p>

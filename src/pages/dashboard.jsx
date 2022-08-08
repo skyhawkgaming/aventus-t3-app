@@ -168,11 +168,11 @@ function Dashboard({ members, cards }) {
                       </button>
                     </div>
                   </div> */}
-                  <div className="flex flex-wrap items-center justify-center gap-1 m-3">
+                  <div className="flex flex-wrap items-center justify-center gap-1 m-3 pr-5">
                     {dashInfo.map((item) => (
                       <div
                         key={item.title}
-                        className="p-4 text-gray-200 bg-secondary-dark-bg h-44 md:w-56 pt-9 rounded-2xl "
+                        className="p-4 text-gray-200 bg-secondary-dark-bg h-44 md:w-56 pt-9 rounded-2xl mx-1 "
                       >
                         <button
                           type="button"

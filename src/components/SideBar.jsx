@@ -115,7 +115,11 @@ export default function SideBar() {
                     />
                 </a>
                 <Divider />
-                <a id="dashboard-button" ms-hide-element="true" href="home">
+                <a
+                    id="dashboard-button"
+                    ms-hide-element="true"
+                    href="dashboard"
+                >
                     <SideBarIcon
                         icon={<BsFillBarChartFill size="28" />}
                         text="Dashboard"
@@ -127,9 +131,6 @@ export default function SideBar() {
                         text="Hall of Fame"
                     />
                 </a>
-                {/* <a id='store-button' ms-hide-element='true' href='store'>
-          <SideBarIcon icon={<BsFillHandbagFill size='28' />} text='Store' />
-        </a> */}
                 {isDesktop ? (
                     <>
                         <Divider />

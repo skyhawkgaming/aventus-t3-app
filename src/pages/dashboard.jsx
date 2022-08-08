@@ -102,10 +102,18 @@ function Dashboard({ members, cards }) {
 
   const dashInfo = [
     {
+      icon: <BsFillPersonFill />,
+      amount: cards[2],
+      title: 'Members',
+      iconColor: '#2b2e2c',
+      iconBg: '#7aff9e',
+      pcColor: 'red-600',
+    },
+    {
       icon: <BsPersonCheckFill />,
       amount: cards[0],
       title: 'Total Points',
-      iconColor: '#03C9D7',
+      iconColor: '#027078',
       iconBg: '#E5FAFB',
       pcColor: 'red-600',
     },
@@ -143,7 +151,7 @@ function Dashboard({ members, cards }) {
             <div className="pl-20 bg-main-bg">
               <div>
                 <div className="items-center flex flex-wrap">
-                  <div className="w-224 p-8 my-3 text-gray-200 bg-secondary-dark-bg rounded-xl">
+                  {/* <div className="w-224 p-8 my-3 text-gray-200 bg-secondary-dark-bg rounded-xl">
                     <div className="flex items-center justify-between ">
                       <div>
                         <p className="pl-4 font-bold">Members</p>
@@ -159,7 +167,7 @@ function Dashboard({ members, cards }) {
                         <BsFillPersonFill size="32" />
                       </button>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="flex flex-wrap items-center justify-center gap-1 m-3">
                     {dashInfo.map((item) => (
                       <div

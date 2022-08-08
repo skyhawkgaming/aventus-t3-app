@@ -1,5 +1,15 @@
 import Head from 'next/head';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { Button } from 'primereact/button';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import { Dropdown } from 'primereact/dropdown';
+import { InputText } from 'primereact/inputtext';
+import { Ripple } from 'primereact/ripple';
+import { classNames } from 'primereact/utils';
+
+import { BsArrowDownLeftCircle } from 'react-icons/bs';
 
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
@@ -13,32 +23,100 @@ import { FaCoins } from 'react-icons/fa';
 import SideBar from '../components/SideBar';
 import SignIn from '../components/SignIn';
 
-/** @param {import('next').InferGetStaticPropsType<typeof getStaticProps> } props */
-function Dashboard({ post, cards }) {
-  const columns = [
-    { field: 'discordId', header: 'Discord Id' },
-    { field: 'discordName', header: 'Discord Name' },
-    { field: 'osrsName', header: 'Osrs Name' },
-    { field: 'points', header: 'Points' },
-    { field: 'splits', header: 'Splits' },
-  ];
-  const dynamicColumns = columns.map((col) => {
-    return (
-      <Column
-        className="w-screen text-center card"
-        style={{ minWidth: '200px' }}
-        key={col.field}
-        field={col.field}
-        header={col.header}
-      />
-    );
-  });
+/** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
+function Dashboard({ members, cards }) {
+  const [first, setFirst] = useState(0);
+  const [rows, setRows] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageInputTooltip, setPageInputTooltip] = useState(
+    "Press 'Enter' key to go to this page."
+  );
+
+  const onCustomPage = (event) => {
+    setFirst(event.first);
+    setRows(event.rows);
+  };
+
+  const onPageInputChange = (event) => {
+    setCurrentPage(event.target.value);
+  };
+
+  const template1 = {
+    layout:
+      'PrevPageLink PageLinks NextPageLink RowsPerPageDropdown CurrentPageReport',
+    PrevPageLink: (options) => {
+      return (
+        <button
+          type="button"
+          className={options.className}
+          onClick={options.onClick}
+          disabled={options.disabled}
+        >
+          <span className="hover:text-blue-600 p-3 underline">Previous</span>
+          <Ripple />
+        </button>
+      );
+    },
+    NextPageLink: (options) => {
+      return (
+        <button
+          type="button"
+          className={options.className}
+          onClick={options.onClick}
+          disabled={options.disabled}
+        >
+          <span className="hover:text-blue-600 p-3 underline disabled:cursor-not-allowed">
+            Next
+          </span>
+          <Ripple />
+        </button>
+      );
+    },
+    PageLinks: (options) => {
+      if (
+        (options.view.startPage === options.page &&
+          options.view.startPage !== 0) ||
+        (options.view.endPage === options.page &&
+          options.page + 1 !== options.totalPages)
+      ) {
+        const className = classNames(options.className, {
+          'p-disabled cursor-not-allowed': true,
+        });
+
+        return (
+          <span className={className} style={{ userSelect: 'none' }}>
+            ...
+          </span>
+        );
+      }
+
+      return (
+        <button
+          type="button"
+          className={options.className}
+          onClick={options.onClick}
+        >
+          {options.page + 1}
+          <Ripple />
+        </button>
+      );
+    },
+  };
+
   const dashInfo = [
+    {
+      icon: <BsFillPersonFill />,
+      amount: cards[2],
+      title: 'Members',
+      iconColor: '#2b2e2c',
+      iconBg: '#7aff9e',
+      pcColor: 'red-600',
+    },
     {
       icon: <BsPersonCheckFill />,
       amount: cards[0],
       title: 'Total Points',
-      iconColor: '#03C9D7',
+      iconColor: '#027078',
       iconBg: '#E5FAFB',
       pcColor: 'red-600',
     },
@@ -75,11 +153,13 @@ function Dashboard({ post, cards }) {
 
             <div className="pl-20 bg-main-bg">
               <div>
-                <div className="flex flex-wrap">
-                  <div className="w-40 h-full p-8 m-3 text-gray-200 bg-secondary-dark-bg rounded-xl lg:w-40">
+
+                <div className="items-center flex flex-wrap">
+                  {/* <div className="w-224 p-8 my-3 text-gray-200 bg-secondary-dark-bg rounded-xl">
                     <div className="flex items-center justify-between ">
                       <div>
-                        <p className="font-bold">Members</p>
+                        <p className="pl-4 font-bold">Members</p>
+
                         <p className="text-2xl text-light-gray">{cards[2]}</p>
                       </div>
                       <button
@@ -87,17 +167,19 @@ function Dashboard({ post, cards }) {
                         style={{
                           backgroundColor: 'bg-slate-600',
                         }}
-                        className="text-2xl opacity-0.9 text-white hover:drop-shadow-xl rounded-full  p-4"
+
+                        className="first-letter:text-2xl opacity-0.9 text-white hover:drop-shadow-xl rounded-full  px-4"
                       >
-                        <BsFillPersonFill />
+                        <BsFillPersonFill size="32" />
                       </button>
                     </div>
-                  </div>
-                  <div className="flex flex-wrap items-center justify-center gap-1 m-3">
+                  </div> */}
+                  <div className="flex flex-wrap items-center justify-center gap-1 m-3 pr-5">
                     {dashInfo.map((item) => (
                       <div
                         key={item.title}
-                        className="p-4 text-gray-200 bg-secondary-dark-bg h-44 md:w-56 pt-9 rounded-2xl "
+                        className="p-4 text-gray-200 bg-secondary-dark-bg h-44 md:w-56 pt-9 rounded-2xl mx-1 "
+
                       >
                         <button
                           type="button"
@@ -123,10 +205,48 @@ function Dashboard({ post, cards }) {
                 </div>
               </div>
               <div className="bg-main-dark-bg pt-4 pb-4 mr-4 rounded-xl">
-                <DataTable value={post} responsiveLayout="scroll">
-                  {dynamicColumns}
-                </DataTable>
+                <div className="bg-secondary-dark-bg text-light-gray   ">
+                  <DataTable
+                    value={members}
+                    paginator
+                    paginatorTemplate={template1}
+                    paginatorPosition="top"
+                    first={first}
+                    rows={rows}
+                    onPage={onCustomPage}
+                    paginatorClassName=""
+                    className=""
+                    responsiveLayout="scroll"
+                  >
+                    <Column
+                      field="discordName"
+                      header="Discord Name"
+                      style={{ width: 250 }}
+                    ></Column>
+                    <Column
+                      field="discordId"
+                      header="Discord Id"
+                      style={{ width: 150 }}
+                    ></Column>
+                    <Column
+                      field="osrsName"
+                      header="Osrs Name"
+                      style={{ width: 150 }}
+                    ></Column>
+                    <Column
+                      field="splits"
+                      header="Splits"
+                      style={{ width: 150 }}
+                    ></Column>
+                    <Column
+                      field="points"
+                      header="Points"
+                      style={{ width: 150, height: 40 }}
+                    ></Column>
+                  </DataTable>
+                </div>
               </div>
+
             </div>
             <SignIn />
           </div>
@@ -136,7 +256,8 @@ function Dashboard({ post, cards }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
+
   const https = require('https');
   const agent = new https.Agent({
     rejectUnauthorized: false,
@@ -144,14 +265,18 @@ export async function getStaticProps() {
   const res = await fetch('https://78.108.218.94:25837/api/members', {
     agent,
   });
-  const post = await res.json();
+
+  const members = await res.json();
+
   const res2 = await fetch('https://78.108.218.94:25837/api/cards', {
     agent,
   });
   const cards = await res2.json();
   return {
     props: {
-      post,
+
+      members,
+
       cards,
     },
   };

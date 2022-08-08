@@ -140,11 +140,11 @@ function Dashboard({ members, cards }) {
 
             <div className="pl-20 bg-main-bg">
               <div>
-                <div className="flex flex-wrap">
-                  <div className="w-40 h-full p-8 m-3 text-gray-200 bg-secondary-dark-bg rounded-xl lg:w-40">
+                <div className="items-center flex flex-wrap">
+                  <div className="w-224 p-8 my-3 text-gray-200 bg-secondary-dark-bg rounded-xl">
                     <div className="flex items-center justify-between ">
                       <div>
-                        <p className="font-bold">Members</p>
+                        <p className="pl-4 font-bold">Members</p>
                         <p className="text-2xl text-light-gray">{cards[2]}</p>
                       </div>
                       <button
@@ -152,9 +152,9 @@ function Dashboard({ members, cards }) {
                         style={{
                           backgroundColor: 'bg-slate-600',
                         }}
-                        className="text-2xl opacity-0.9 text-white hover:drop-shadow-xl rounded-full  p-4"
+                        className="first-letter:text-2xl opacity-0.9 text-white hover:drop-shadow-xl rounded-full  px-4"
                       >
-                        <BsFillPersonFill />
+                        <BsFillPersonFill size="32" />
                       </button>
                     </div>
                   </div>

@@ -39,13 +39,17 @@ module.exports = {
       },
       height: {
         80: '80px',
+        480: '480px',
+        10: '10px',
       },
       minHeight: {
+        470: '470px',
+        600: '600px',
+        480: '480px',
         590: '590px',
       },
       backgroundImage: {
-        'hero-pattern':
-          "url('https://i.ibb.co/MkvLDfb/Rectangle-4389.png')",
+        'hero-pattern': "url('https://i.ibb.co/MkvLDfb/Rectangle-4389.png')",
       },
     },
   },

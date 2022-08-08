@@ -62,7 +62,9 @@ function Dashboard({ members, cards }) {
           onClick={options.onClick}
           disabled={options.disabled}
         >
-          <span className="hover:text-blue-600 p-3 underline">Next</span>
+          <span className="hover:text-blue-600 p-3 underline disabled:cursor-not-allowed">
+            Next
+          </span>
           <Ripple />
         </button>
       );
@@ -75,7 +77,7 @@ function Dashboard({ members, cards }) {
           options.page + 1 !== options.totalPages)
       ) {
         const className = classNames(options.className, {
-          'p-disabled': true,
+          'p-disabled cursor-not-allowed': true,
         });
 
         return (

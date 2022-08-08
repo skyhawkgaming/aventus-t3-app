@@ -49,7 +49,7 @@ function Dashboard({ members, cards }) {
           onClick={options.onClick}
           disabled={options.disabled}
         >
-          <span className="p-3 underline">Previous</span>
+          <span className="hover:text-blue-600 p-3 underline">Previous</span>
           <Ripple />
         </button>
       );
@@ -62,7 +62,7 @@ function Dashboard({ members, cards }) {
           onClick={options.onClick}
           disabled={options.disabled}
         >
-          <span className="p-3 underline">Next</span>
+          <span className="hover:text-blue-600 p-3 underline">Next</span>
           <Ripple />
         </button>
       );
@@ -74,7 +74,9 @@ function Dashboard({ members, cards }) {
         (options.view.endPage === options.page &&
           options.page + 1 !== options.totalPages)
       ) {
-        const className = classNames(options.className, { 'p-disabled': true });
+        const className = classNames(options.className, {
+          'p-disabled': true,
+        });
 
         return (
           <span className={className} style={{ userSelect: 'none' }}>

@@ -1,5 +1,8 @@
 import Head from 'next/head';
-import React, { useEffect } from 'react';
+import React from 'react';
+
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
 
 import {
     BsCalendarEventFill,
@@ -11,7 +14,25 @@ import SideBar from '../components/SideBar';
 import SignIn from '../components/SignIn';
 
 /** @param {import('next').InferGetStaticPropsType<typeof getStaticProps> } props */
-function Dashboard({ members, cards }) {
+function Dashboard({ post, cards }) {
+    const columns = [
+        { field: 'discordId', header: 'Discord Id' },
+        { field: 'discordName', header: 'Discord Name' },
+        { field: 'osrsName', header: 'Osrs Name' },
+        { field: 'points', header: 'Points' },
+        { field: 'splits', header: 'Splits' },
+    ];
+    const dynamicColumns = columns.map((col) => {
+        return (
+            <Column
+                className="w-screen text-center card"
+                style={{ minWidth: '200px' }}
+                key={col.field}
+                field={col.field}
+                header={col.header}
+            />
+        );
+    });
     const dashInfo = [
         {
             icon: <BsPersonCheckFill />,
@@ -50,11 +71,8 @@ function Dashboard({ members, cards }) {
             <div className="bg-slate-900">
                 <div className="relative flex bg-main-dark-bg">
                     <SideBar />
-                    <div
-                        className="fixed right-4 bottom-4"
-                        style={{ zIndex: '1000' }}
-                    ></div>
-                    <div className="w-full min-h-screen pl-20 bg-main-bg">
+
+                    <div className="pl-20 bg-main-bg">
                         <div>
                             <div className="text-center">
                                 <div>
@@ -112,27 +130,12 @@ function Dashboard({ members, cards }) {
                                     </div>
                                 </div>
                                 <SignIn />
-                                <div className="text-white">
-                                    <tbody>
-                                        <tr>
-                                            <th>discordId</th>
-                                            <th>discordName</th>
-                                            <th>osrsName</th>
-                                            <th>points</th>
-                                            <th>splits</th>
-                                        </tr>
-                                    </tbody>
-                                    {members.map((item, i) => (
-                                        <tr key={i}>
-                                            <td>{item.discordId}</td>
-                                            <td>{item.discordName}</td>
-                                            <td>{item.osrsName}</td>
-                                            <td>{item.points}</td>
-                                            <td>{item.splits}</td>
-                                        </tr>
-                                    ))}
-                                </div>
                             </div>
+                        </div>
+                        <div className="text-white">
+                            <DataTable value={post} responsiveLayout="scroll">
+                                {dynamicColumns}
+                            </DataTable>
                         </div>
                     </div>
                 </div>
@@ -149,14 +152,14 @@ export async function getStaticProps() {
     const res = await fetch('https://78.108.218.94:25837/api/members', {
         agent,
     });
-    const members = await res.json();
+    const post = await res.json();
     const res2 = await fetch('https://78.108.218.94:25837/api/cards', {
         agent,
     });
     const cards = await res2.json();
     return {
         props: {
-            members: members,
+            post,
             cards,
         },
     };

@@ -1,6 +1,6 @@
-import { Center, Grid } from '@mantine/core';
+import { Center, Grid, Pagination, Table } from '@mantine/core';
 import Head from 'next/head';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
@@ -23,80 +23,23 @@ import SignIn from '../components/SignIn';
 
 /** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
 function Dashboard({ members, cards }) {
-  const [first, setFirst] = useState(0);
-  const [rows, setRows] = useState(10);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageInputTooltip, setPageInputTooltip] = useState(
-    "Press 'Enter' key to go to this page."
-  );
+  const itemsPerPage = 10;
+  const totalPages = members.length / itemsPerPage;
+  const [activePage, setPage] = useState(1);
+  const displayData = useMemo(() => {
+    const start = (activePage - 1) * itemsPerPage;
+    return members.slice(start, start + itemsPerPage);
+  }, [activePage, members]);
 
-  const onCustomPage = (event) => {
-    setFirst(event.first);
-    setRows(event.rows);
-  };
-
-  const onPageInputChange = (event) => {
-    setCurrentPage(event.target.value);
-  };
-
-  const template1 = {
-    layout:
-      'PrevPageLink PageLinks NextPageLink RowsPerPageDropdown CurrentPageReport',
-    PrevPageLink: (options) => {
-      return (
-        <button
-          type='button'
-          className={options.className}
-          onClick={options.onClick}
-          disabled={options.disabled}>
-          <span className='hover:text-blue-600 p-3 underline'>Previous</span>
-          <Ripple />
-        </button>
-      );
-    },
-    NextPageLink: (options) => {
-      return (
-        <button
-          type='button'
-          className={options.className}
-          onClick={options.onClick}
-          disabled={options.disabled}>
-          <span className='hover:text-blue-600 p-3 underline disabled:cursor-not-allowed'>
-            Next
-          </span>
-          <Ripple />
-        </button>
-      );
-    },
-    PageLinks: (options) => {
-      if (
-        (options.view.startPage === options.page &&
-          options.view.startPage !== 0) ||
-        (options.view.endPage === options.page &&
-          options.page + 1 !== options.totalPages)
-      ) {
-        const className = classNames(options.className, {
-          'p-disabled cursor-not-allowed': true,
-        });
-
-        return (
-          <span className={className} style={{ userSelect: 'none' }}>
-            ...
-          </span>
-        );
-      }
-
-      return (
-        <button
-          type='button'
-          className={options.className}
-          onClick={options.onClick}>
-          {options.page + 1}
-          <Ripple />
-        </button>
-      );
-    },
-  };
+  const rows = displayData.map((member) => (
+    <tr key={member.discordName}>
+      <td>{member.discordName}</td>
+      <td>{member.discordId}</td>
+      <td>{member.osrsName}</td>
+      <td>{member.points}</td>
+      <td>{member.splits}</td>
+    </tr>
+  ));
 
   const dashInfo = [
     {
@@ -170,44 +113,30 @@ function Dashboard({ members, cards }) {
                 </div>
               ))}
 
-              <Grid.Col sm={12} md={9} lg={9}>
-                <div className='text-center text-md bg-main-dark-bg pt-4 pb-4 text-light-gray rounded-xl'>
-                  {' '}
-                  <Center>
-                    <DataTable
-                      value={members}
-                      paginator
-                      paginatorTemplate={template1}
-                      paginatorPosition='top'
-                      first={first}
-                      rows={rows}
-                      onPage={onCustomPage}
-                      paginatorClassName=''
-                      className=''
-                      responsiveLayout>
-                      <Column
-                        field='discordName'
-                        header='Discord Name'
-                        style={{ width: 250 }}></Column>
-                      <Column
-                        field='discordId'
-                        header='Discord Id'
-                        style={{ width: 200 }}></Column>
-                      <Column
-                        field='osrsName'
-                        header='Osrs Name'
-                        style={{ width: 200 }}></Column>
-                      <Column
-                        field='splits'
-                        header='Splits'
-                        style={{ width: 200 }}></Column>
-                      <Column
-                        field='points'
-                        header='Points'
-                        style={{ width: 150, height: 50 }}></Column>
-                    </DataTable>
-                  </Center>{' '}
-                </div>
+              <Grid.Col md={6} lg={6}>
+                <Center>
+                  <div className='bg-main-dark-bg p-4 text-light-gray rounded-xl'>
+                    <Table striped highlightOnHover>
+                      <thead>
+                        <tr>
+                          <th>Discord Name:</th>
+                          <th>Discord ID:</th>
+                          <th>OSRS Name:</th>
+                          <th>Points:</th>
+                          <th>Splits:</th>
+                        </tr>
+                      </thead>
+                      <tbody>{rows}</tbody>
+                    </Table>
+                    <Pagination
+                      grow
+                      size='md'
+                      page={activePage}
+                      onChange={setPage}
+                      total={totalPages}
+                    />
+                  </div>
+                </Center>
               </Grid.Col>
             </Grid>
             <SignIn />

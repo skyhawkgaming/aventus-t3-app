@@ -114,11 +114,11 @@ function Dashboard({ members, cards }) {
                       fontSize={16}>
                       <thead>
                         <tr>
-                          <th>Discord Name:</th>
-                          <th>Discord ID:</th>
-                          <th>OSRS Name:</th>
-                          <th>Points:</th>
-                          <th>Splits:</th>
+                          <th className='text-center'>Discord Name:</th>
+                          <th className='text-center'>Discord ID:</th>
+                          <th className='text-center'>OSRS Name:</th>
+                          <th className='text-center'>Points:</th>
+                          <th className='text-center'>Splits:</th>
                         </tr>
                       </thead>
                       <tbody>{rows}</tbody>

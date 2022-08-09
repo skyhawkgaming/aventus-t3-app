@@ -13,7 +13,7 @@ import SignIn from '../components/SignIn';
 
 /** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
 function Dashboard({ members, cards }) {
-  const itemsPerPage = 18;
+  const itemsPerPage = 15;
   const totalPages = Math.round(members.length / itemsPerPage);
   const [activePage, setPage] = useState(1);
   const displayData = useMemo(() => {

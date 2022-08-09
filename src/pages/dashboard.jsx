@@ -218,4 +218,28 @@ function Dashboard({ members, cards }) {
   );
 }
 
+export async function getServerSideProps() {
+  const https = require('https');
+  const agent = new https.Agent({
+    rejectUnauthorized: false,
+  });
+  const res = await fetch('https://78.108.218.94:25837/api/members', {
+    agent,
+  });
+
+  const members = await res.json();
+
+  const res2 = await fetch('https://78.108.218.94:25837/api/cards', {
+    agent,
+  });
+  const cards = await res2.json();
+  return {
+    props: {
+      members,
+
+      cards,
+    },
+  };
+}
+
 export default Dashboard;

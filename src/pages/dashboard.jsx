@@ -1,22 +1,4 @@
-import {
-  Center,
-  createStyles,
-  Grid,
-  Group,
-  Pagination,
-  ScrollArea,
-  Table,
-  Text,
-  TextInput,
-  UnstyledButton,
-} from '@mantine/core';
-import { keys } from '@mantine/utils';
-import {
-  IconChevronDown,
-  IconChevronUp,
-  IconSearch,
-  IconSelector,
-} from '@tabler/icons';
+import { Center, Grid, Pagination, Table } from '@mantine/core';
 import Head from 'next/head';
 import React, { useEffect, useMemo, useState } from 'react';
 
@@ -31,8 +13,8 @@ import SignIn from '../components/SignIn';
 
 /** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
 function Dashboard({ members, cards }) {
-  const itemsPerPage = 10;
-  const totalPages = members.length / itemsPerPage;
+  const itemsPerPage = 18;
+  const totalPages = Math.round(members.length / itemsPerPage);
   const [activePage, setPage] = useState(1);
   const displayData = useMemo(() => {
     const start = (activePage - 1) * itemsPerPage;

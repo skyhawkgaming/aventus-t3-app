@@ -1,36 +1,25 @@
-import Head from 'next/head';
-import React, { useEffect, useState } from 'react';
-
-import { Button } from 'primereact/button';
-import { Column } from 'primereact/column';
-import { DataTable } from 'primereact/datatable';
-import { Dropdown } from 'primereact/dropdown';
-import { InputText } from 'primereact/inputtext';
-import { Ripple } from 'primereact/ripple';
-import { classNames } from 'primereact/utils';
-
-import { BsArrowDownLeftCircle } from 'react-icons/bs';
-
-import { Column } from 'primereact/column';
-import { DataTable } from 'primereact/datatable';
+import Head from "next/head";
+import React, { useEffect, useState } from "react";
+import { Column } from "primereact/column";
+import { DataTable } from "primereact/datatable";
+import { Ripple } from "primereact/ripple";
+import { classNames } from "primereact/utils";
+import NextTable from "../components/table/NextTable";
 
 import {
   BsCalendarEventFill,
   BsFillPersonFill,
   BsPersonCheckFill,
-} from 'react-icons/bs';
-import { FaCoins } from 'react-icons/fa';
-import SideBar from '../components/SideBar';
-import SignIn from '../components/SignIn';
+} from "react-icons/bs";
+import { FaCoins } from "react-icons/fa";
+import SideBar from "../components/SideBar";
+import SignIn from "../components/SignIn";
 
 /** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
 function Dashboard({ members, cards }) {
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageInputTooltip, setPageInputTooltip] = useState(
-    "Press 'Enter' key to go to this page."
-  );
 
   const onCustomPage = (event) => {
     setFirst(event.first);
@@ -43,7 +32,7 @@ function Dashboard({ members, cards }) {
 
   const template1 = {
     layout:
-      'PrevPageLink PageLinks NextPageLink RowsPerPageDropdown CurrentPageReport',
+      "PrevPageLink PageLinks NextPageLink RowsPerPageDropdown CurrentPageReport",
     PrevPageLink: (options) => {
       return (
         <button
@@ -80,11 +69,11 @@ function Dashboard({ members, cards }) {
           options.page + 1 !== options.totalPages)
       ) {
         const className = classNames(options.className, {
-          'p-disabled cursor-not-allowed': true,
+          "p-disabled cursor-not-allowed": true,
         });
 
         return (
-          <span className={className} style={{ userSelect: 'none' }}>
+          <span className={className} style={{ userSelect: "none" }}>
             ...
           </span>
         );
@@ -107,34 +96,34 @@ function Dashboard({ members, cards }) {
     {
       icon: <BsFillPersonFill />,
       amount: cards[2],
-      title: 'Members',
-      iconColor: '#2b2e2c',
-      iconBg: '#7aff9e',
-      pcColor: 'red-600',
+      title: "Members",
+      iconColor: "#2b2e2c",
+      iconBg: "#7aff9e",
+      pcColor: "red-600",
     },
     {
       icon: <BsPersonCheckFill />,
       amount: cards[0],
-      title: 'Total Points',
-      iconColor: '#027078',
-      iconBg: '#E5FAFB',
-      pcColor: 'red-600',
+      title: "Total Points",
+      iconColor: "#027078",
+      iconBg: "#E5FAFB",
+      pcColor: "red-600",
     },
     {
       icon: <FaCoins />,
       amount: cards[1],
-      title: 'Total Splits',
-      iconColor: 'rgb(255, 244, 229)',
-      iconBg: 'rgb(254, 201, 15)',
-      pcColor: 'green-600',
+      title: "Total Splits",
+      iconColor: "rgb(255, 244, 229)",
+      iconBg: "rgb(254, 201, 15)",
+      pcColor: "green-600",
     },
     {
       icon: <BsCalendarEventFill />,
-      amount: 'Zulrah',
-      title: 'Current Event',
-      iconColor: 'rgb(228, 106, 118)',
-      iconBg: 'rgb(255, 244, 229)',
-      pcColor: 'green-600',
+      amount: "Zulrah",
+      title: "Current Event",
+      iconColor: "rgb(228, 106, 118)",
+      iconBg: "rgb(255, 244, 229)",
+      pcColor: "green-600",
     },
   ];
   // const { data: session } = useSession()
@@ -153,7 +142,6 @@ function Dashboard({ members, cards }) {
 
             <div className="pl-20 bg-main-bg">
               <div>
-
                 <div className="items-center flex flex-wrap">
                   {/* <div className="w-224 p-8 my-3 text-gray-200 bg-secondary-dark-bg rounded-xl">
                     <div className="flex items-center justify-between ">
@@ -179,7 +167,6 @@ function Dashboard({ members, cards }) {
                       <div
                         key={item.title}
                         className="p-4 text-gray-200 bg-secondary-dark-bg h-44 md:w-56 pt-9 rounded-2xl mx-1 "
-
                       >
                         <button
                           type="button"
@@ -204,49 +191,8 @@ function Dashboard({ members, cards }) {
                   </div>
                 </div>
               </div>
-              <div className="bg-main-dark-bg pt-4 pb-4 mr-4 rounded-xl">
-                <div className="bg-secondary-dark-bg text-light-gray   ">
-                  <DataTable
-                    value={members}
-                    paginator
-                    paginatorTemplate={template1}
-                    paginatorPosition="top"
-                    first={first}
-                    rows={rows}
-                    onPage={onCustomPage}
-                    paginatorClassName=""
-                    className=""
-                    responsiveLayout="scroll"
-                  >
-                    <Column
-                      field="discordName"
-                      header="Discord Name"
-                      style={{ width: 250 }}
-                    ></Column>
-                    <Column
-                      field="discordId"
-                      header="Discord Id"
-                      style={{ width: 150 }}
-                    ></Column>
-                    <Column
-                      field="osrsName"
-                      header="Osrs Name"
-                      style={{ width: 150 }}
-                    ></Column>
-                    <Column
-                      field="splits"
-                      header="Splits"
-                      style={{ width: 150 }}
-                    ></Column>
-                    <Column
-                      field="points"
-                      header="Points"
-                      style={{ width: 150, height: 40 }}
-                    ></Column>
-                  </DataTable>
-                </div>
-              </div>
 
+              <NextTable />
             </div>
             <SignIn />
           </div>
@@ -257,24 +203,22 @@ function Dashboard({ members, cards }) {
 }
 
 export async function getServerSideProps() {
-
-  const https = require('https');
+  const https = require("https");
   const agent = new https.Agent({
     rejectUnauthorized: false,
   });
-  const res = await fetch('https://78.108.218.94:25837/api/members', {
+  const res = await fetch("https://78.108.218.94:25837/api/members", {
     agent,
   });
 
   const members = await res.json();
 
-  const res2 = await fetch('https://78.108.218.94:25837/api/cards', {
+  const res2 = await fetch("https://78.108.218.94:25837/api/cards", {
     agent,
   });
   const cards = await res2.json();
   return {
     props: {
-
       members,
 
       cards,

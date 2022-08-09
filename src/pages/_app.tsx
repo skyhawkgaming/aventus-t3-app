@@ -4,30 +4,32 @@ import { SessionProvider } from 'next-auth/react';
 import superjson from 'superjson';
 
 // src/pages/_app.tsx
+import { MantineProvider } from '@mantine/core';
 import { withTRPC } from '@trpc/next';
 
-import type { AppType } from "next/dist/shared/lib/utils";
-import type { AppRouter } from "../server/router";
+import type { AppType } from 'next/dist/shared/lib/utils';
+import type { AppRouter } from '../server/router';
 const MyApp: AppType = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <MantineProvider theme={{ colorScheme: 'dark', primaryColor: 'blue', fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji' }} withCSSVariables withGlobalStyles withNormalizeCSS>
+        <Component {...pageProps} />
+      </MantineProvider>
     </SessionProvider>
   );
 };
 
 const getBaseUrl = () => {
-  if (typeof window !== "undefined") {
-    return "";
+  if (typeof window !== 'undefined') {
+    return '';
   }
   if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`; // SSR should use vercel url
 
   return `http://localhost:${process.env.PORT ?? 3000}`; // dev SSR should use localhost
 };
-
 
 export default withTRPC<AppRouter>({
   config({ ctx }) {

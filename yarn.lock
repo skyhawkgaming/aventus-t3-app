@@ -2109,7 +2109,7 @@
   dependencies:
     tslib "^2.4.0"
 
-"@tabler/icons@^1.68.0":
+"@tabler/icons@^1.68.0", "@tabler/icons@^1.79.0":
   version "1.79.0"
   resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-1.79.0.tgz#5432d874dc1f34ef09f9378a05a92c07a640f6f0"
   integrity sha512-XFWS5YySm/UEn1PY452+td3JoV2/SPQ2QNofMSMkFyVygTX0gANZqCFG4yECeGgFaka9ilSAXZD9rZ/1u8wiLg==
@@ -2363,13 +2363,6 @@
   version "18.0.5"
   resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.0.5.tgz"
   integrity sha512-OWPWTUrY/NIrjsAPkAk1wW9LZeIjSvkXRhclsFO8CZcZGCOg2G0YZy4ft+rOyYxy8B7ui5iZzi9OkDebZ7/QSA==
-  dependencies:
-    "@types/react" "*"
-
-"@types/react-transition-group@^4.4.1":
-  version "4.4.5"
-  resolved "https://registry.npmjs.org/@types/react-transition-group/-/react-transition-group-4.4.5.tgz"
-  integrity sha512-juKD/eiSM3/xZYzjuzH6ZwpP+/lejltmiS3QEzV/vmb/Q8+HfDmxu+Baga8UEMGBqV88Nbg4l2hY/K2DkyaLLA==
   dependencies:
     "@types/react" "*"
 
@@ -7805,14 +7798,6 @@ primeicons@^5.0.0:
   resolved "https://registry.yarnpkg.com/primeicons/-/primeicons-5.0.0.tgz#73a0b6028a77c58a9eeb331ad13aaf085e8451ee"
   integrity sha512-heygWF0X5HFI1otlZE62pp6ye7sZ8om78J9au2BRkg8O7Y8AHTZ9qKMRzchZUHLe8zUAvdi6hZzzm9XxgwIExw==
 
-primereact@^8.3.0:
-  version "8.3.0"
-  resolved "https://registry.npmjs.org/primereact/-/primereact-8.3.0.tgz"
-  integrity sha512-Y/8hlTnKsmgbTLlw6LWwMoA78rDMdA2PUcrJqm7wHgBUVxSPQ8l4f3JkbpVKVqESb5nuay9l+0BE4dx1zSBTAg==
-  dependencies:
-    "@types/react-transition-group" "^4.4.1"
-    react-transition-group "^4.4.1"
-
 prism-react-renderer@^1.2.1:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/prism-react-renderer/-/prism-react-renderer-1.3.5.tgz#786bb69aa6f73c32ba1ee813fbe17a0115435085"
@@ -8146,16 +8131,6 @@ react-transition-group@4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.4.2.tgz#8b59a56f09ced7b55cbd53c36768b922890d5470"
   integrity sha512-/RNYfRAMlZwDSr6z4zNKV6xu53/e2BuaBbGhbyYIXTrmgu/bGHzmqOs7mJSJBHy9Ud+ApHx3QjrkKSp1pxvlFg==
-  dependencies:
-    "@babel/runtime" "^7.5.5"
-    dom-helpers "^5.0.1"
-    loose-envify "^1.4.0"
-    prop-types "^15.6.2"
-
-react-transition-group@^4.4.1:
-  version "4.4.5"
-  resolved "https://registry.npmjs.org/react-transition-group/-/react-transition-group-4.4.5.tgz"
-  integrity sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==
   dependencies:
     "@babel/runtime" "^7.5.5"
     dom-helpers "^5.0.1"

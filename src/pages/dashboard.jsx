@@ -1,16 +1,24 @@
-import { Center, Grid, Pagination, Table } from '@mantine/core';
+import {
+  Center,
+  createStyles,
+  Grid,
+  Group,
+  Pagination,
+  ScrollArea,
+  Table,
+  Text,
+  TextInput,
+  UnstyledButton,
+} from '@mantine/core';
+import { keys } from '@mantine/utils';
+import {
+  IconChevronDown,
+  IconChevronUp,
+  IconSearch,
+  IconSelector,
+} from '@tabler/icons';
 import Head from 'next/head';
 import React, { useEffect, useMemo, useState } from 'react';
-
-import { Button } from 'primereact/button';
-import { Column } from 'primereact/column';
-import { DataTable } from 'primereact/datatable';
-import { Dropdown } from 'primereact/dropdown';
-import { InputText } from 'primereact/inputtext';
-import { Ripple } from 'primereact/ripple';
-import { classNames } from 'primereact/utils';
-
-import { BsArrowDownLeftCircle } from 'react-icons/bs';
 
 import {
   BsCalendarEventFill,
@@ -92,7 +100,7 @@ function Dashboard({ members, cards }) {
               {dashInfo.map((item) => (
                 <div
                   key={item.title}
-                  className='flex  text-gray-200 text-center items-center bg-secondary-dark-bg h-44 w-44 rounded-2xl mt-12 mb-4 mx-4'>
+                  className='flex text-gray-200 text-center items-center bg-secondary-dark-bg h-44 w-44 rounded-2xl mt-12 mb-4 mx-2.5'>
                   <Grid.Col span={12}>
                     <button
                       type='button'
@@ -113,10 +121,15 @@ function Dashboard({ members, cards }) {
                 </div>
               ))}
 
-              <Grid.Col md={6} lg={6}>
+              <Grid.Col>
                 <Center>
                   <div className='bg-main-dark-bg p-4 text-light-gray rounded-xl'>
-                    <Table striped highlightOnHover>
+                    <Table
+                      striped
+                      highlightOnHover
+                      horizontalSpacing='sm'
+                      verticalSpacing={12}
+                      fontSize={16}>
                       <thead>
                         <tr>
                           <th>Discord Name:</th>

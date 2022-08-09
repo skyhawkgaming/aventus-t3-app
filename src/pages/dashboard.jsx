@@ -1,10 +1,18 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
+
+import { Button } from "primereact/button";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
+import { Dropdown } from "primereact/dropdown";
+import { InputText } from "primereact/inputtext";
 import { Ripple } from "primereact/ripple";
 import { classNames } from "primereact/utils";
-import NextTable from "../components/table/NextTable";
+
+import { BsArrowDownLeftCircle } from "react-icons/bs";
+
+import { Column } from "primereact/column";
+import { DataTable } from "primereact/datatable";
 
 import {
   BsCalendarEventFill,
